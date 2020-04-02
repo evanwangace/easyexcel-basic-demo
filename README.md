@@ -1,7 +1,11 @@
 # easyexcel-basic-demo
 
 #### ExcelUtil对easyexcel2.X进行封装，实现一个方法完成简单的excel导入和导出。
-
+  
+  
+#### 使用介绍：https://evanwang.blog.csdn.net/article/details/105267953
+  
+  
 # 一. 背景
 
 主流office文档操作组件性能比较
