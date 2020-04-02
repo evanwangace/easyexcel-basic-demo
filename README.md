@@ -177,7 +177,7 @@ public void writeDynamicHeadExcel(HttpServletResponse response) throws IOExcepti
 write时不传入class,table时传入并设置needHead为false
 
 ### 3. 导出表格带样式
-调用 ```ExcelUtil.writeStyleExcel()```  方法：
+调用 ```ExcelUtil.writeStyleExcel()```  方法：可根据实际需要自行定制。
 ```
 public static  <T> void writeStyleExcel(HttpServletResponse response,List<T> list, String fileName, String sheetName, Class<T> clazz) {
     //表头策略
@@ -206,5 +206,4 @@ public static  <T> void writeStyleExcel(HttpServletResponse response,List<T> lis
 
 }
 ```
-可根据实际需要自行定制
 
