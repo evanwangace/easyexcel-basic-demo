@@ -1,11 +1,11 @@
 # easyexcel-basic-demo
 
 #### ExcelUtil对easyexcel2.X进行封装，实现一个方法完成简单的excel导入和导出。
-  
-  
+
+
 #### 使用介绍：https://evanwang.blog.csdn.net/article/details/105267953
-  
-  
+
+
 # 一. 背景
 
 主流office文档操作组件性能比较
@@ -148,35 +148,27 @@ value 为列名;index 为列的序号,可为null
 ### 2. 设置动态表头
 调用 ```ExcelUtil.writeDynamicHeadExcel()```  方法：
 ```
-public void writeDynamicHeadExcel(HttpServletResponse response) throws IOException {
-    List<ExportModel> list = new ArrayList<>();
+    @GetMapping(value = "/export")
+    public void writeExcel(HttpServletResponse response) {
+        List<ExportModel> list = getList();
+        String fileName = "Excel导出测试";
+        String sheetName = "sheet1";
+        ExcelUtil.writeDynamicHeadExcel(response, list, fileName, sheetName, ExportModel.class, head());
+    }
 
-    ExportModel model1 = new ExportModel();
-    model1.setName("孙悟空");
-    model1.setSex("男");
-    model1.setAge(500);
-    list.add(model1);
-
-    ExportModel model2 = new ExportModel();
-    model2.setName("哪吒");
-    model2.setSex("女");
-    model2.setAge(499);
-    list.add(model2);
-    
-    
-    List<List<String>> headList = new ArrayList<List<String>>();
-    List<String> head0 = new ArrayList<String>();
-    head0.add("姓甚名啥");
-    List<String> head1 = new ArrayList<String>();
-    head1.add("是男是女");
-    List<String> head2 = new ArrayList<String>();
-    head2.add("贵庚几何");
-    headList.add(head0);
-    headList.add(head1);
-    headList.add(head2);
-    
-    ExcelUtil.writeDynamicHeadExcel(response, list, fileName, sheetName, ExportModel.class,headList);
-}
+    private List<List<String>> head() {
+        List<List<String>> headList = new ArrayList<>();
+        List<String> nameHead = new ArrayList<>();
+        nameHead.add("姓名");
+        List<String> genderHead = new ArrayList<>();
+        genderHead.add("性别");
+        List<String> ageHead = new ArrayList<>();
+        ageHead.add("年龄");
+        headList.add(nameHead);
+        headList.add(genderHead);
+        headList.add(ageHead);
+        return headList;
+    }
 ```
 write时不传入class,table时传入并设置needHead为false
 
